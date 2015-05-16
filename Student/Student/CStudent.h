@@ -23,8 +23,8 @@ private:
 	string m_patronymic;
 	int m_age;
 
-	bool NotALetter(string const& str);
-	void ErrorInAge(int age);
+	bool IsLetter(string const& str);
+	void ErrorsInAge(int age);
 	void ErrorsInName(string const& name,
 		string const& surname, string const& patronymic);
 };

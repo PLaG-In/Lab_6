@@ -11,6 +11,7 @@ CStudent::CStudent(string const& name, string const& surname,
 	, m_patronymic(patronymic)
 	, m_age(age)
 {
+	ErrorsInAge(m_age);
 	ErrorsInName(m_name, m_surname, m_patronymic);
 }
 
@@ -52,12 +53,17 @@ void CStudent::Rename(string const& name,
 	m_patronymic = move(cPatronymic);
 }
 
-void CStudent::SetAge(int age)
+void CStudent::ErrorsInAge(int age)
 {
 	if (age < 14 || age > 60)
 	{
 		throw out_of_range("Age must be in that range (14, 60)!");
 	}
+}
+
+void CStudent::SetAge(int age)
+{
+	ErrorsInAge(age);
 
 	if (age < m_age)
 	{
@@ -67,32 +73,32 @@ void CStudent::SetAge(int age)
 	m_age = age;
 }
 
-bool CStudent::NotALetter(string const& str)
+bool CStudent::IsLetter(string const& str)
 {
 	for (size_t i = 0; i < str.length(); ++i)
 	{
-		if (isalpha(str[i]))
+		if (!isalpha(str[i]))
 		{
-			return true;
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 void CStudent::ErrorsInName(string const& name,
 	string const& surname, string const& patronymic)
 {
-	if (name.empty() && NotALetter(name))
+	if (name.empty() || !IsLetter(name))
 	{
 		throw invalid_argument("Incorrect name!");
 	}
 
-	if (surname.empty() && NotALetter(surname))
+	if (surname.empty() || !IsLetter(surname))
 	{
 		throw invalid_argument("Incorrect surname!");
 	}
 
-	if (!(patronymic.empty() || NotALetter(patronymic)))
+	if (!IsLetter(patronymic))
 	{
 		throw invalid_argument("Incorrect patronymic!");
 	}
