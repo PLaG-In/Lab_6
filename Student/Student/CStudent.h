@@ -22,6 +22,8 @@ private:
 	string m_surname;
 	string m_patronymic;
 	int m_age;
+	const int minAge = 14;
+	const int maxAge = 60;
 
 	bool IsLetter(string const& str);
 	void ErrorsInAge(int age);

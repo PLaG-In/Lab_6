@@ -55,7 +55,7 @@ void CStudent::Rename(string const& name,
 
 void CStudent::ErrorsInAge(int age)
 {
-	if (age < 14 || age > 60)
+	if (age < minAge || age > maxAge)
 	{
 		throw out_of_range("Age must be in that range (14, 60)!");
 	}
