@@ -12,11 +12,15 @@ CTriangle InputParameters()
 
 	if (!(cin >> firstSide >> secondSide >> thirdSide))
 	{
+		if (cin.eof())
+		{
+			exit(0);
+		}
 		if (cin.fail())
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw runtime_error("Incorrect input!");
+			throw invalid_argument("Incorrect input!");
 		}
 	}
 	return CTriangle(firstSide, secondSide, thirdSide);
@@ -24,7 +28,7 @@ CTriangle InputParameters()
 
 int main()
 {
-	while (!cin.eof())
+	while (true)
 	{
 		try
 		{
