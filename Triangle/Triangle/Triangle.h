@@ -7,6 +7,13 @@ public:
 	CTriangle(double firstSide, double secondSide, double thirdSide);
 	~CTriangle();
 
+	enum Index
+	{
+		First,
+		Second,
+		Third
+	};
+
 	double GetFirstSide() const;
 	double GetSecondSide() const;
 	double GetThirdSide() const;
@@ -14,10 +21,10 @@ public:
 	double GetPerimeter() const;
 
 private:
+	Index m_sideName;
 	double m_firstSide;
 	double m_secondSide;
 	double m_thirdSide;
-	void IncorrectSideLength(double side, std::string num);
-	void SideErrors(double firstSide, double secondSide, double thirdSide);
+	void static ValidateSideLength(double side, Index sideName);
 };
 

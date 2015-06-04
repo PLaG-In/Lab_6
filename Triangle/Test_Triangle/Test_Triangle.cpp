@@ -6,52 +6,30 @@
 
 BOOST_AUTO_TEST_CASE(DefineTriangleParameters)
 {
-	{
-		CTriangle trian(18, 10, 10);
-		BOOST_CHECK_EQUAL(trian.GetFirstSide(), 18);
-		BOOST_CHECK_EQUAL(trian.GetSecondSide(), 10);
-		BOOST_CHECK_EQUAL(trian.GetThirdSide(), 10);
-	}
-	{
-		CTriangle trian(22, 9, 14);
-		BOOST_CHECK_EQUAL(trian.GetFirstSide(), 22);
-		BOOST_CHECK_EQUAL(trian.GetSecondSide(), 9);
-		BOOST_CHECK_EQUAL(trian.GetThirdSide(), 14);
-	}
-	{
-		CTriangle trian(13, 27, 16);
-		BOOST_CHECK_EQUAL(trian.GetFirstSide(), 13);
-		BOOST_CHECK_EQUAL(trian.GetSecondSide(), 27);
-		BOOST_CHECK_EQUAL(trian.GetThirdSide(), 16);
-	}
+	CTriangle trian(18, 10, 10);
+	BOOST_CHECK_EQUAL(trian.GetFirstSide(), 18);
+	BOOST_CHECK_EQUAL(trian.GetSecondSide(), 10);
+	BOOST_CHECK_EQUAL(trian.GetThirdSide(), 10);
 }
 
 BOOST_AUTO_TEST_CASE(DefineTriangleNegativeParameters)
 {
-	{
-		BOOST_CHECK_THROW(CTriangle trian(-18, 10, 10), std::invalid_argument);
-	}
-	{
-		BOOST_CHECK_THROW(CTriangle trian(22, -9, 14), std::invalid_argument);
-	}
-	{
-		BOOST_CHECK_THROW(CTriangle trian(13, 27, -15), std::invalid_argument);
-	}
-	{
-		BOOST_CHECK_THROW(CTriangle trian(-6, -6, -6), std::invalid_argument);
-	}
+	BOOST_CHECK_THROW(CTriangle trian(-18, 10, 10), std::invalid_argument);
+	BOOST_CHECK_THROW(CTriangle trian(22, -9, 14), std::invalid_argument);
+	BOOST_CHECK_THROW(CTriangle trian(13, 27, -15), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(CreateIncorrectTriangle)
 {
+	BOOST_CHECK_THROW(CTriangle trian(26, 4, 86), std::domain_error);
+	BOOST_CHECK_THROW(CTriangle trian(94, 18, 10), std::domain_error);
+	BOOST_CHECK_THROW(CTriangle trian(5, 94, 4), std::domain_error);
+}
+
+BOOST_AUTO_TEST_CASE(CreateTriangleByDefault)
+{
 	{
-		BOOST_CHECK_THROW(CTriangle trian(26, 4, 86), std::domain_error);
-	}
-	{
-		BOOST_CHECK_THROW(CTriangle trian(94, 18, 10), std::domain_error);
-	}
-	{
-		BOOST_CHECK_THROW(CTriangle trian(5, 94, 4), std::domain_error);
+		CTriangle trian();
 	}
 }
 
@@ -65,6 +43,15 @@ BOOST_AUTO_TEST_CASE(DegenerateTriangleParameters)
 	}
 	{
 		CTriangle trian(20, 7, 13);
+	}
+	{
+		CTriangle trian(0, 7, 7);
+	}
+	{
+		CTriangle trian(4, 0, 4);
+	}
+	{
+		CTriangle trian(3, 3, 0);
 	}
 }
 
