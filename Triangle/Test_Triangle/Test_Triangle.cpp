@@ -26,12 +26,10 @@ BOOST_AUTO_TEST_CASE(CreateIncorrectTriangle)
 	BOOST_CHECK_THROW(CTriangle trian(5, 94, 4), std::domain_error);
 }
 
-BOOST_AUTO_TEST_CASE(CreateTriangleByDefault)
-{
-	{
-		CTriangle trian();
-	}
-}
+//BOOST_AUTO_TEST_CASE(CreateTriangleByDefault)
+//{
+//	CTriangle trian();
+//}
 
 BOOST_AUTO_TEST_CASE(DegenerateTriangleParameters)
 {
@@ -52,6 +50,9 @@ BOOST_AUTO_TEST_CASE(DegenerateTriangleParameters)
 	}
 	{
 		CTriangle trian(3, 3, 0);
+	}
+	{
+		CTriangle trian(0, 0, 0);
 	}
 }
 
